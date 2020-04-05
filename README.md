@@ -1,1 +1,1 @@
-Launch School's RB101 exercised
+Launch School's RB101 exercises
