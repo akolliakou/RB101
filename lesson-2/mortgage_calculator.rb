@@ -34,11 +34,11 @@ def apr_monthly(apr)
   apr.round(4)
 end
 
-def months(months)
+def duration_final(months)
   months.to_i * 12
 end
 
-def calculation(amount, apr, duration)
+def calculation_final(amount, apr, duration)
   amount * (apr / (1 - (1 + apr)**(-duration)))
 end
 
@@ -78,16 +78,14 @@ loop do
     prompt(MESSAGES['invalid_years'])
   end
 
-  monthly_payment = calculation(amount_final(amt_input), \
-                                apr_monthly(apr_input), \
-                                months(years_input))
-
   summary = <<-SUM.strip
    Thank you, #{name}!
    For a loan amount of: £#{amount_final(amt_input)}
    With a monthly: #{(apr_monthly(apr_input) * 100).to_s + '%'} APR
-   Over: #{months(years_input)} months
-   Your monthly repayment will be: £#{monthly_payment.round(2)}
+   Over: #{duration_final(years_input)} months
+   Your monthly repayment will be: £#{calculation_final(amount_final(amt_input), \
+                                                        apr_monthly(apr_input), \
+                                                        duration_final(years_input)).round(2)}
   SUM
 
   prompt(summary)
