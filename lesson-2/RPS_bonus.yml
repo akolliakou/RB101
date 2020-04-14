@@ -1,0 +1,11 @@
+win_player: "You won!"
+win_computer: "Computer won!"
+tie: "It's a tie!"
+welcome: "Welcome to Rock, Paper, Scissors, Lizard, Spock!
+Whoever gets to 5 wins first, wins the game! 
+Enter your name:"
+invalid_name: "Oops, that doesn't look like a valid name. Try again."
+choice: "Choose one: r for rock, p for paper, s for scissors, l for lizard or sp for spock."
+invalid_choice: "That's not a valid choice. Try again."
+play_again: "Do you want to play again? Enter 'yes' to start again or any other key to exit."
+exit: "Thank you for playing!"
