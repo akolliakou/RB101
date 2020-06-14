@@ -1,0 +1,26 @@
+who_goes_first: >
+ Who would you like to go first? 
+    Enter 'P' for Player or 'C' for Computer.
+invalid_contestant: >
+ There is no such contestant! 
+    Try entering 'P' for Player or 'C' for Computer again.
+invalid_square: >
+ That's not a valid choice! 
+    Please choose one of the available squares.
+tie: "This game is a tie!"
+computer_won: "COMPUTER WON THE MATCH!"
+player_won: "YOU WON THE MATCH!"
+another_game: >
+ Would you like to continue playing for first to win 5 games? 
+    Enter 'y' to continue or any other key to exit."
+another_match: >
+ Would you like to start another match? 
+    Enter 'y' to continue or any other key to exit.
+welcome_and_rules: >
+ Welcome! 
+    Time for Tic Tac Toe :)
+    You are playing against the computer. 
+    First to mark three squares in a row in any direction wins the game. 
+    First to win five games, or with more games won if exiting before five games are played, wins the match. 
+    Good luck!
+goodbye: "Thanks for playing Tic Tac Toe! Goodbye!"
