@@ -115,7 +115,7 @@ def player_places_piece!(brd)
   loop do
     prompt "Choose a square #{joinor(empty_squares(brd))}."
     square = gets.chomp.to_i
-    break if empty_squares(brd).include?(square) 
+    break if empty_squares(brd).include?(square)
     messages('invalid_square')
   end
   brd[square] = PLAYER_MARKER
