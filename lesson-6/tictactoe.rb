@@ -9,6 +9,8 @@ INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 
+GAMES_TO_WIN = 5
+
 WHO_IS_FIRST = 'Choose'
 
 def prompt(msg)
@@ -132,9 +134,7 @@ def computer_strategy(board, marker)
 end
 
 def pick_square_five(board)
-  if board[5] == INITIAL_MARKER
-    5
-  end
+  GAMES_TO_WIN if board[GAMES_TO_WIN] == INITIAL_MARKER
 end
 
 def random_square(board)
@@ -155,7 +155,7 @@ def board_full?(brd)
   empty_squares(brd).empty?
 end
 
-def someone_won?(brd)
+def someone_won_game?(brd)
   !!detect_winner(brd)
 end
 
@@ -171,32 +171,64 @@ def detect_winner(brd)
 end
 
 def update_score(winner, score)
-  winner == 'Player' ? score['Player'] += 1 : score['Computer'] += 1
+  if winner == 'Player'
+    score['Player'] += 1
+  elsif winner == 'Computer'
+    score['Computer'] += 1
+  end
 end
 
 def display_game_winner(board)
-  if someone_won?(board)
+  if someone_won_game?(board)
     prompt "#{detect_winner(board)} won this game!"
   else
     messages('tie')
   end
 end
 
+def display_game_score(score)
+  prompt("The game score is player: #{score['Player']}, \
+computer: #{score['Computer']}")
+end
+
+def someone_won_match?(score)
+  score['Player'] == GAMES_TO_WIN || score['Computer'] == GAMES_TO_WIN
+end
+
 def display_final_winner(score)
-  score[:player] == 5 ? (messages('player_won')) : (messages('computer_won'))
+  if score['Player'] == GAMES_TO_WIN || score['Player'] > score['Computer']
+    (messages('player_won'))
+  elsif score['Computer'] == GAMES_TO_WIN || score['Computer'] > score['Player']
+    (messages('computer_won'))
+  end
 end
 
 def play_another_game
+  answer = ''
   messages('another_game')
-  gets.chomp.downcase
+  loop do
+    answer = gets.chomp.downcase
+    break if %w(yes y n no).include?(answer)
+    messages('invalid_answer_game')
+  end
+  answer == 'no' || answer == 'n'
 end
 
 def start_new_match
+  answer = ''
   messages('another_match')
-  gets.chomp.downcase
+  loop do
+    answer = gets.chomp.downcase
+    break if %w(yes y n no).include?(answer)
+    messages('invalid_answer_match')
+  end
+  answer == 'no' || answer == 'n'
 end
 
+clear_screen
+
 messages('welcome_and_rules')
+puts
 
 loop do
   score = { 'Player' => 0, 'Computer' => 0 }
@@ -209,7 +241,7 @@ loop do
       display_board(board)
       place_piece!(board, current_player)
       current_player = alternate_player(current_player)
-      break if someone_won?(board) || board_full?(board)
+      break if someone_won_game?(board) || board_full?(board)
     end
 
     display_board(board)
@@ -218,20 +250,17 @@ loop do
 
     update_score(detect_winner(board), score)
 
-    prompt("The game score is player: #{score['Player']}, \
-computer: #{score['Computer']}")
+    display_game_score(score)
 
-    break if score['Player'] == 5 || score['Computer'] == 5
+    break if someone_won_match?(score)
 
-    play_another_game_choice = play_another_game
-    break unless play_another_game_choice.downcase == 'y'
+    break if play_another_game
     clear_screen
   end
 
   display_final_winner(score)
 
-  start_new_match_choice = start_new_match
-  break unless start_new_match_choice.downcase == 'y'
+  break if start_new_match
   clear_screen
 end
 
