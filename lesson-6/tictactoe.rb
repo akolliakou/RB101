@@ -196,9 +196,9 @@ def someone_won_match?(score)
 end
 
 def display_final_winner(score)
-  if score['Player'] == GAMES_TO_WIN || score['Player'] > score['Computer']
+  if score['Player'] == GAMES_TO_WIN
     (messages('player_won'))
-  elsif score['Computer'] == GAMES_TO_WIN || score['Computer'] > score['Player']
+  else
     (messages('computer_won'))
   end
 end
