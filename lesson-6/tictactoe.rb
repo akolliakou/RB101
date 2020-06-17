@@ -134,7 +134,7 @@ def computer_strategy(board, marker)
 end
 
 def pick_square_five(board)
-  GAMES_TO_WIN if board[GAMES_TO_WIN] == INITIAL_MARKER
+  5 if board[5] == INITIAL_MARKER
 end
 
 def random_square(board)
