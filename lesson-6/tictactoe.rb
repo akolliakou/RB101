@@ -25,10 +25,6 @@ def clear_screen
   system('clear')
 end
 
-def valid_number?(num)
-  num % 1 == 0
-end
-
 def choose_player
   messages('who_goes_first')
   loop do
