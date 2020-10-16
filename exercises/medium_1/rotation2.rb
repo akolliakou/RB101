@@ -1,3 +1,5 @@
+# Write a method that can rotate the last n digits of a number
+
 def rotate_array(array)
   array[1..-1] + [array[0]]
 end
