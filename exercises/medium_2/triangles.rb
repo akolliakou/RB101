@@ -29,3 +29,9 @@ def triangle(num1, num2, num3)
     :acute
   end
 end
+
+triangle(60, 70, 50) == :acute
+triangle(30, 90, 60) == :right
+triangle(120, 50, 10) == :obtuse
+triangle(0, 90, 90) == :invalid
+triangle(50, 50, 50) == :invalid
